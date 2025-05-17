@@ -3,7 +3,11 @@ from flask_cors import CORS
 from projects import projects, add_project
 
 app = Flask(__name__)
-CORS(app)  # Allow requests from frontend (CORS)
+CORS(app)  # Enable CORS so frontend can access the API
+
+@app.route("/ping")
+def ping():
+    return jsonify({"message": "pong from Flask!"})
 
 @app.route("/projects", methods=["GET"])
 def get_projects():
